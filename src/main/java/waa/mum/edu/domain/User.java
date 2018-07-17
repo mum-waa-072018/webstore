@@ -39,7 +39,7 @@ public class User {
   private Address address;
 
   @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-  @JoinColumn(name="id")
+  @JoinColumn(name="employee_id")
   private List<Telephone> phones;
 
   private String roles;

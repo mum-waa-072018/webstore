@@ -26,9 +26,11 @@ public class UserController {
   @RequestMapping(value = "user", method = RequestMethod.GET)
   @ResponseBody
   public User addUser() {
-    Telephone telephone = new Telephone(10l, "100", "222", "1222");
+    Telephone telephone = new Telephone("100", "222", "1222");
     List<Telephone> phones = new ArrayList<Telephone>();
-    User user = new User("Yuliang", "Jin", new Date(), new Address(), "USER", phones, "kjkjk");
+    Address address = new Address("N 4 Str", "Fairfield", "IA", "52557");
+    phones.add(telephone);
+    User user = new User("Yuliang", "Jin", new Date(), address, "USER", phones, "kjkjk");
     userService.addUser(user);
     return user;
   }
