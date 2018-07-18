@@ -13,21 +13,21 @@ public class Message {
 	private Long id;
 
 	//send type id -1: bradcast 0:  online message  -2: offline message
-	public Long fromId;
+	private Long fromId;
 	//send firstname
-	public String fromName;
+	private String fromName;
 	//receiver  Todo :if need to develope 1v1
-	public Long toId;
+	private Long toId;
 	//send text
-	public String text;
+	private String text;
 	//send date
-	public Date date;
-	
-	public String avatar;
-	
-	public Long userId;
-	
-	public String email;
+	private Date date;
+
+	private String avatar;
+
+	private Long userId;
+
+	private String email;
 
 	public Long getId() {
 		return id;

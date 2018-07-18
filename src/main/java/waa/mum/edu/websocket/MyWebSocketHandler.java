@@ -22,6 +22,9 @@ import java.util.concurrent.ConcurrentHashMap;
  */
 @Component
 public class MyWebSocketHandler implements WebSocketHandler {
+
+
+
 	//用于保存HttpSession与WebSocketSession的映射关系
 	public static final Map<Long, WebSocketSession> userSocketSessionMap;
 

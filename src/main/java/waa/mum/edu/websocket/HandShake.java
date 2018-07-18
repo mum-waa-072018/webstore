@@ -17,6 +17,7 @@ import java.util.Map;
  */
 public class HandShake implements HandshakeInterceptor {
 
+
 	public boolean beforeHandshake(ServerHttpRequest request, ServerHttpResponse response, WebSocketHandler wsHandler, Map<String, Object> attributes) throws Exception {
 		User user = UserSessionUtil.currentUser();
 		System.out.println("Websocket:User [ID:" + user.getId() + "] has built a connecttion");
@@ -32,6 +33,7 @@ public class HandShake implements HandshakeInterceptor {
 	}
 
 	public void afterHandshake(ServerHttpRequest request, ServerHttpResponse response, WebSocketHandler wsHandler, Exception exception) {
+
 	}
 
 }

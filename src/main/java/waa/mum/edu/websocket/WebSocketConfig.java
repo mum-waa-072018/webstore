@@ -18,10 +18,16 @@ public class WebSocketConfig extends WebMvcConfigurerAdapter implements WebSocke
 	@Resource
 	MyWebSocketHandler handler;
 
+
+
 	public void registerWebSocketHandlers(WebSocketHandlerRegistry registry) {
 
-		registry.addHandler(handler, "/ws").addInterceptors(new HandShake());
+//		registry.addHandler(handler, "/ws").addInterceptors(new HandShake());
+
+		registry.addHandler(handler, "/ws").setAllowedOrigins("*").addInterceptors(new HandShake());
+
 
 	}
+
 
 }
