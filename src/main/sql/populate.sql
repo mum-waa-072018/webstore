@@ -16,6 +16,6 @@ INSERT INTO `Product` VALUES (NULL,'rose', 'New', "The brand new Acer Aspire", 7
 INSERT INTO `Product` VALUES (NULL,'rose gold', 'Refurbished', "The brand new Lenovo", 750.00, 10, "Lenovo")
 INSERT INTO `Product` VALUES (NULL,'red', 'Used', "The brand new Hp Envy", 750.00, 10, "Hp Envy")
 
-					
-  INSERT INTO `User` VALUES ('1', '2018-07-17 20:14:46', 'Wenqiang', 'Li', '1','1',null), ('2', '2018-07-17 20:15:03', 'GG', 'E', '2', '1',null);
+
+  INSERT INTO `User` VALUES ('1', '2018-07-17 20:14:46', 'Wenqiang', 'Li', '1',null), ('2', '2018-07-17 20:15:03', 'GG', 'E', '2',null);
 
