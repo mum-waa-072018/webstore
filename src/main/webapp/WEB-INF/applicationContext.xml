@@ -65,7 +65,8 @@
    
    <!-- Scan for  transaction-based resources -->
    	<context:component-scan base-package="waa.mum.edu.service" />
-    	<context:component-scan base-package="waa.mum.edu.repository" />
+    <context:component-scan base-package="waa.mum.edu.repository" />
+    <context:component-scan base-package="waa.mum.edu.websocket" />
      
    <tx:annotation-driven transaction-manager="transactionManager"/>
  

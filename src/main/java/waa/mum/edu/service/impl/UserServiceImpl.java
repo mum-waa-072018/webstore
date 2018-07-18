@@ -5,7 +5,6 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
 import waa.mum.edu.domain.User;
 import waa.mum.edu.repository.UserRepository;
 import waa.mum.edu.service.UserService;
@@ -24,4 +23,15 @@ public class UserServiceImpl implements UserService {
 //    user.setPassword(passwordEncoder.encode(user.getPassword()));
     userRepository.save(user);
   }
+
+  public User getUserById(Long id) {
+    return userRepository.findOne(id);
+  }
+
+  public String getNameById(Long id) {
+    return userRepository.getNameById(id);
+  }
+
+  public User getUserByName(String name){return userRepository.getUserByName(name);};
+
 }
