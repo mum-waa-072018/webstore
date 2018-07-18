@@ -68,4 +68,7 @@ public class Telephone {
     this.pre = pre;
     this.number = number;
   }
+
+  public Telephone() {
+  }
 }

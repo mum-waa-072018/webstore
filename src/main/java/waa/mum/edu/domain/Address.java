@@ -28,6 +28,9 @@ public class Address {
 		this.zipCode = zipCode;
 	}
 
+	public Address() {
+	}
+
 	public String getStreet() {
 		return street;
 	}

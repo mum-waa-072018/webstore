@@ -1,6 +1,7 @@
 package waa.mum.edu.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -32,10 +33,27 @@ public class UserController {
     Address address = new Address("N 4 Str", "Fairfield", "IA", "52557");
     phones.add(telephone);
     Role role = new Role("Yuliang", "ROLE_USER");
+    Role role1 = new Role("Yuliang", "ROLE_ADMIN");
+    List<Role> roles = new ArrayList<>();
+    roles.add(role);
+    roles.add(role1);
+    User user = new User("Yuliang", "Jin", new Date(), address, roles, phones, "kjkjk");
+    userService.addUser(user);
+    return user;
+  }
+
+  @PreAuthorize("hasRole('ROLE_ADMIN')")
+  @RequestMapping(value = "hello", method = RequestMethod.GET)
+  @ResponseBody
+  public User getUser() {
+    Telephone telephone = new Telephone("100", "222", "1222");
+    List<Telephone> phones = new ArrayList<Telephone>();
+    Address address = new Address("N 4 Str", "Fairfield", "IA", "52557");
+    phones.add(telephone);
+    Role role = new Role("Yuliang", "ROLE_USER");
     List<Role> roles = new ArrayList<>();
     roles.add(role);
     User user = new User("Yuliang", "Jin", new Date(), address, roles, phones, "kjkjk");
-    userService.addUser(user);
     return user;
   }
 }

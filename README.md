@@ -8,4 +8,5 @@
  + Register
  + Login
  + Logout
+ + Password Encryption
 ### Live Chat
