@@ -39,15 +39,17 @@ public class User {
   private Address address;
 
   @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-  @JoinColumn(name="employee_id")
+  @JoinColumn(name="user_id")
   private List<Telephone> phones;
 
-  private String roles;
+  @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+  @JoinColumn(name="user_id")
+  private List<Role> roles;
 
   public User() {
   }
 
-  public User(String firstName, String lastName, Date birthday, Address address, String roles, List<Telephone>
+  public User(String firstName, String lastName, Date birthday, Address address, List<Role> roles, List<Telephone>
       phones, String password) {
     this.firstName = firstName;
     this.lastName = lastName;
@@ -106,11 +108,11 @@ public class User {
     this.address = address;
   }
 
-  public String getRoles() {
+  public List<Role> getRoles() {
     return roles;
   }
 
-  public void setRoles(String roles) {
+  public void setRoles(List<Role> roles) {
     this.roles = roles;
   }
 

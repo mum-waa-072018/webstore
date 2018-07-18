@@ -11,6 +11,7 @@ import java.util.Date;
 import java.util.List;
 
 import waa.mum.edu.domain.Address;
+import waa.mum.edu.domain.Role;
 import waa.mum.edu.domain.Telephone;
 import waa.mum.edu.domain.User;
 import waa.mum.edu.service.UserService;
@@ -30,7 +31,10 @@ public class UserController {
     List<Telephone> phones = new ArrayList<Telephone>();
     Address address = new Address("N 4 Str", "Fairfield", "IA", "52557");
     phones.add(telephone);
-    User user = new User("Yuliang", "Jin", new Date(), address, "USER", phones, "kjkjk");
+    Role role = new Role("Yuliang", "ROLE_USER");
+    List<Role> roles = new ArrayList<>();
+    roles.add(role);
+    User user = new User("Yuliang", "Jin", new Date(), address, roles, phones, "kjkjk");
     userService.addUser(user);
     return user;
   }
