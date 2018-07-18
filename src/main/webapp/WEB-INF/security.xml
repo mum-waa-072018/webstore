@@ -12,13 +12,13 @@
         <logout invalidate-session="true" />
     </http>
 
-    <beans:bean id="dataSource"
-        class="org.springframework.jdbc.datasource.DriverManagerDataSource">
-        <beans:property name="driverClassName" value="com.mysql.jdbc.Driver" />
-        <beans:property name="url" value="jdbc:mysql://127.0.0.1:3306/lightning" />
-        <beans:property name="username" value="root" />
-        <beans:property name="password" value="root" />
-    </beans:bean>
+    <!--<beans:bean id="dataSource"-->
+        <!--class="org.springframework.jdbc.datasource.DriverManagerDataSource">-->
+        <!--<beans:property name="driverClassName" value="com.mysql.jdbc.Driver" />-->
+        <!--<beans:property name="url" value="jdbc:mysql://127.0.0.1:3306/lightning" />-->
+        <!--<beans:property name="username" value="root" />-->
+        <!--<beans:property name="password" value="root" />-->
+    <!--</beans:bean>-->
 
     <beans:bean id="bcrypt" class="org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder"/>
     <authentication-manager alias="authenticationManager">
