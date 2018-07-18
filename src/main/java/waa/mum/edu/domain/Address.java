@@ -31,6 +31,17 @@ public class Address {
 	public Address() {
 	}
 
+	@Override
+	public String toString() {
+		return "Address{" +
+				"id=" + id +
+				", street='" + street + '\'' +
+				", city='" + city + '\'' +
+				", state='" + state + '\'' +
+				", zipCode='" + zipCode + '\'' +
+				'}';
+	}
+
 	public String getStreet() {
 		return street;
 	}

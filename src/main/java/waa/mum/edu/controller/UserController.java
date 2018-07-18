@@ -25,7 +25,6 @@ import waa.mum.edu.service.UserService;
 
 @Controller
 @RequestMapping("users")
-@SessionAttributes({"phoneList"})
 public class UserController {
 
   @Autowired
@@ -41,10 +40,11 @@ public class UserController {
   }
 
   @RequestMapping(value = "user", method = RequestMethod.GET)
-  public ModelAndView getRegistrationPage(@ModelAttribute User user, @ModelAttribute Telephone phone, Model model) {
+  public ModelAndView getRegistrationPage(@ModelAttribute Telephone phone, Model model) {
     ArrayList<Telephone> telephones = new ArrayList<>();
     model.addAttribute("phoneList", telephones);
     model.addAttribute("phone", new Telephone());
+    model.addAttribute("user", new User());
     ModelAndView mav = new ModelAndView();
     mav.setViewName("register");
     return mav;
@@ -67,10 +67,9 @@ public class UserController {
 
   @RequestMapping(value = "user", method = RequestMethod.POST)
   public String register(@ModelAttribute User user, Model model) {
-    List<Telephone> phoneList = (List<Telephone>) model.asMap().get("phoneList");
-    user.setPhones(phoneList);
     userService.addUser(user);
-    return "dispatch:/welcome";
+    System.out.println("WWW:" + user.toString());
+    return "login";
   }
 
   @PreAuthorize("hasRole('ROLE_ADMIN')")
@@ -84,7 +83,7 @@ public class UserController {
     Role role = new Role("Yuliang", "ROLE_USER");
     List<Role> roles = new ArrayList<>();
     roles.add(role);
-    User user = new User("Yuliang", "Jin", new Date(), address, roles, phones, "kjkjk");
+    User user = new User("Yuliang", "Jin", new Date(), address, roles, telephone, "kjkjk");
     return user;
   }
 }

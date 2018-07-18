@@ -71,4 +71,15 @@ public class Telephone {
 
   public Telephone() {
   }
+
+  @Override
+  public String toString() {
+    return "Telephone{" +
+        "id=" + id +
+        ", area='" + area + '\'' +
+        ", pre='" + pre + '\'' +
+        ", number='" + number + '\'' +
+        ", user=" + user +
+        '}';
+  }
 }

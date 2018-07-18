@@ -38,9 +38,9 @@ public class User {
   @OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
   private Address address;
 
-  @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-  @JoinColumn(name="user_id")
-  private List<Telephone> phones;
+  @OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+//  @JoinColumn(name="user_id")
+  private Telephone phone;
 
   @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
   @JoinColumn(name="user_id")
@@ -49,14 +49,13 @@ public class User {
   public User() {
   }
 
-  public User(String firstName, String lastName, Date birthday, Address address, List<Role> roles, List<Telephone>
-      phones, String password) {
+  public User(String firstName, String lastName, Date birthday, Address address, List<Role> roles, Telephone phone, String password) {
     this.firstName = firstName;
     this.lastName = lastName;
     this.birthday = birthday;
     this.address = address;
     this.roles = roles;
-    this.phones = phones;
+    this.phone = phone;
     this.password = password;
   }
 
@@ -116,11 +115,25 @@ public class User {
     this.roles = roles;
   }
 
-  public List<Telephone> getPhones() {
-    return phones;
+  public Telephone getPhone() {
+    return phone;
   }
 
-  public void setPhones(List<Telephone> phones) {
-    this.phones = phones;
+  public void setPhone(Telephone phone) {
+    this.phone = phone;
+  }
+
+  @Override
+  public String toString() {
+    return "User{" +
+        "id=" + id +
+        ", firstName='" + firstName + '\'' +
+        ", password='" + password + '\'' +
+        ", lastName='" + lastName + '\'' +
+        ", birthday=" + birthday +
+        ", address=" + address +
+        ", phone=" + phone+
+        ", roles=" + roles +
+        '}';
   }
 }
