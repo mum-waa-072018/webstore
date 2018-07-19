@@ -1,33 +1,22 @@
-<?xml version="1.0" encoding="UTF-8"?>
 <beans:beans xmlns="http://www.springframework.org/schema/security"
-    xmlns:beans="http://www.springframework.org/schema/beans"
-    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xsi:schemaLocation="http://www.springframework.org/schema/beans
-        http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
-        http://www.springframework.org/schema/security
-        http://www.springframework.org/schema/security/spring-security.xsd">
+             xmlns:beans="http://www.springframework.org/schema/beans"
+             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+             xsi:schemaLocation="http://www.springframework.org/schema/beans
+    http://www.springframework.org/schema/beans/spring-beans-4.0.xsd
+    http://www.springframework.org/schema/security
+    http://www.springframework.org/schema/security/spring-security-4.0.xsd">
 
     <http auto-config="true">
-        <form-login />
-        <logout invalidate-session="true" />
+        <intercept-url pattern="/users/hello" access="hasRole('ROLE_ADMIN')" />
+        <csrf disabled="true" />
     </http>
 
-    <!--<beans:bean id="dataSource"-->
-        <!--class="org.springframework.jdbc.datasource.DriverManagerDataSource">-->
-        <!--<beans:property name="driverClassName" value="com.mysql.jdbc.Driver" />-->
-        <!--<beans:property name="url" value="jdbc:mysql://127.0.0.1:3306/lightning" />-->
-        <!--<beans:property name="username" value="root" />-->
-        <!--<beans:property name="password" value="root" />-->
-    <!--</beans:bean>-->
+    <authentication-manager>
+        <authentication-provider>
+            <user-service>
+                <user name="admin" password="nimda" authorities="ROLE_ADMIN" />
+            </user-service>
+        </authentication-provider>
+    </authentication-manager>
 
-    <!--<beans:bean id="bcrypt" class="org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder"/>-->
-    <!--<authentication-manager alias="authenticationManager">-->
-        <!--<authentication-provider>-->
-            <!--&lt;!&ndash;<password-encoder ref="bcrypt"/>&ndash;&gt;-->
-            <!--<jdbc-user-service id="jdbcUserService" data-source-ref="dataSource"-->
-                <!--users-by-username-query="select firstName,password from User where firstName=?"-->
-                <!--authorities-by-username-query="select userName, userRole from Role where userName=?"-->
-            <!--/>-->
-        <!--</authentication-provider>-->
-    <!--</authentication-manager>-->
 </beans:beans>

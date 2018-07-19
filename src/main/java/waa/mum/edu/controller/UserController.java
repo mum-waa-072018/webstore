@@ -77,7 +77,7 @@ public class UserController {
     return "loginPage";
   }
 
-  @PreAuthorize("hasRole('ROLE_ADMIN')")
+//  @PreAuthorize("hasRole('ROLE_ADMIN')")
   @RequestMapping(value = "hello", method = RequestMethod.GET)
   @ResponseBody
   public User getUser() {
