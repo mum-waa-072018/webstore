@@ -4,6 +4,7 @@ package waa.mum.edu.domain;
 public class JsonResponse {
     private String status = null;
     private Object result = null;
+    private String type = null;
     public String getStatus() {
             return status;
     }
@@ -16,5 +17,12 @@ public class JsonResponse {
     public void setResult(Object result) {
             this.result = result;
     }
+	public String getType() {
+		return type;
+	}
+	public void setType(String type) {
+		this.type = type;
+	}
+    
 
 }

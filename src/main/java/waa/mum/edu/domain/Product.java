@@ -15,7 +15,7 @@ public class Product {
     @Id
     @Column
     @GeneratedValue(strategy = GenerationType.AUTO)
- 	private int id;
+ 	private Long id;
 	@Column
 	@NotEmpty(message="Enter Title.")
 	private String title;
@@ -34,6 +34,9 @@ public class Product {
 	@Min(value=1, message="Enter Item Price")
 	private double price;
 	
+	@Column
+	private int status;
+	
 
 	public double getPrice() {
 		return price;
@@ -50,10 +53,11 @@ public class Product {
 	}
 	@Column
 	private String color;
-	public int getId() {
+	
+	public Long getId() {
 		return id;
 	}
-	public void setId(int id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 	public String getTitle() {

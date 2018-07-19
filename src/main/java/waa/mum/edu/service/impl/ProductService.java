@@ -23,11 +23,22 @@ public class ProductService {
   }
   
   public void saveProduct(Product product) {
+	  productRepository.save(product);	 
+  }
+  
+  
+/*  public void Product(Product product) {
 	  productRepository.save(product);
   }
+  */
   
   public List<Product> getAllProduct(){
 	return (List<Product>) productRepository.findAll();
+  }
+
+  public void deleteProduct(Long id) {
+	productRepository.sddd(id);
+		
   }
   
 }

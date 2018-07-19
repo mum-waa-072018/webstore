@@ -267,7 +267,7 @@ $(document).ready(function(){
 						<h2>Manage <b>Products</b></h2>
 					</div>
 					<div class="col-sm-6">
-						<a href="#addEmployeeModal" class="btn btn-success" data-toggle="modal"><i class="material-icons">&#xE147;</i> <span>Add New Product</span></a>
+						<a href="#addProductModal" class="btn btn-success" data-toggle="modal"><i class="material-icons">&#xE147;</i> <span>Add New Product</span></a>
 						<a href="#deleteEmployeeModal" class="btn btn-danger" data-toggle="modal"><i class="material-icons">&#xE15C;</i> <span>Delete</span></a>						
 					</div>
                 </div>
@@ -305,8 +305,8 @@ $(document).ready(function(){
                         <td>${product.price}</td>
                         <td>${product.quantity }</td>
                         <td>
-                            <a href="#editEmployeeModal"  class="editEmployeeModal" data-id="${product.id}" class="edit" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i></a>
-                            <a href="#deleteEmployeeModal" class="delete" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i></a>
+                            <a href="#editProductModal"  class="editProductModal" data-id="${product.id}" class="edit" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i></a>
+                            <a href="#deleteEmployeeModal" class="deleteProductModal" data-id="${product.id}" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i></a>
                         </td>
                     </tr>
                    </c:forEach>
@@ -327,7 +327,7 @@ $(document).ready(function(){
         </div>
     </div>
 	<!-- Add Modal HTML -->
-	<div id="addEmployeeModal" class="modal fade">
+	<div id="addProductModal" class="modal fade">
 		<div class="modal-dialog">
 			<div class="modal-content">
 			
@@ -378,15 +378,20 @@ $(document).ready(function(){
 		</div>
 	</div> 
 	<!-- Edit Modal HTML -->
-	<div id="editEmployeeModal" class="modal fade">
+	<div id="editProductModal" class="modal fade">
 		<div class="modal-dialog">
-			<div class="modal-content" id="edit-product">
-				<form:form modelAttribute="product" >
+			<div class="modal-content" >
+				<form:form modelAttribute="product" id="editProduct">
 					<div class="modal-header">						
 						<h4 class="modal-title">Edit Product</h4>
 						<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
 					</div>
-					<div class="modal-body">					
+					<div class="modal-body">
+						<div class="error-msg form-group" style="display: none;">
+						</div>
+						
+						<form:hidden  path="id" id="id" />
+										
 						<div class="form-group">
 							<label>Product Title</label>
 							<form:input id="title" path="title"  class="form-control"  required="required" />
@@ -417,7 +422,7 @@ $(document).ready(function(){
 					<div class="modal-footer">
 						<input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
 						
-						<input type="submit" class="btn btn-info" id="save" value="Save">
+						<input type="submit" class="btn btn-info" id="edit" value="Save">
 					</div>
 				</form:form>
 			</div>
@@ -427,80 +432,99 @@ $(document).ready(function(){
 	<div id="deleteEmployeeModal" class="modal fade">
 		<div class="modal-dialog">
 			<div class="modal-content">
-				<form>
+				<form:form modelAttribute="product" id="deleteProduct">
 					<div class="modal-header">						
 						<h4 class="modal-title">Delete Product</h4>
 						<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
 					</div>
-					<div class="modal-body">					
+					<div class="modal-body">
+						<form:hidden  path="id" id="id" />					
 						<p>Are you sure you want to delete these Record(s)?</p>
 						<p class="text-warning"><small>This action cannot be undone.</small></p>
 					</div>
 					<div class="modal-footer">
 						<input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
-						<input type="submit" class="btn btn-danger" value="Delete">
+						<input type="submit" id="delete" class="btn btn-danger" value="Delete">
 					</div>
-				</form>
+				</form:form>
 			</div>
 		</div>
 	</div>	
 	<script>
-	$(function() {
-			$('.editEmployeeModal').click(function (e) {
-				 e.preventDefault();
-				   const quantity = $(this).parent().prev().html();
-				   const price = $(this).parent().prev().prev().html();
-				   const condition = $(this).parent().prev().prev().prev().html();
-				   const color = $(this).parent().prev().prev().prev().prev().html();
-				   const desc = $(this).parent().prev().prev().prev().prev().prev().html() ;
-				   const title = $(this).parent().prev().prev().prev().prev().prev().prev().text();
-				   
-				   $("#edit-product #title").val(title);
-				   $("#edit-product #description").val(desc);
-				   $("#edit-product #color").val(color);
-				   $("#edit-product #conditions").val(condition);
-				   $("#edit-product #price").val(price);
-				   $("#edit-product #quantity").val(quantity);
+	$(function() {			
+			$('.deleteProductModal').click(function (e) {
+				const productId = $(this).attr('data-id');
+				$("#deleteProduct #id").val($(this).attr('data-id'));
+				
+				$('#deleteProduct #delete').click(function(e) {
+					e.preventDefault();
+					const buttonId = $(this).attr('id');					
+					const formId = "#" + buttonId + "Product";
+					$.post({
+				         url : 'deleteProduct' + "/" + $(formId +" " + "#id").val(),
+				         method: 'POST',
+				         data : $(formId +" " + "#id").val(),
+				         dataType: 'json',
+				         type:'json',
+				         success : function(res) {		         	
+				            if(res.status == "SUCCESS"){		               
+				            	$("#deleteEmployeeModal").modal('hide');
+				            }
+				         }
+				      })
+				 });
+			});			
+			
+			$('.editProductModal').click(function (e) {
+			   e.preventDefault();
+			   const quantity = $(this).parent().prev().html();
+			   const price = $(this).parent().prev().prev().html();
+			   const condition = $(this).parent().prev().prev().prev().html();
+			   const color = $(this).parent().prev().prev().prev().prev().html();
+			   const desc = $(this).parent().prev().prev().prev().prev().prev().html() ;
+			   const title = $(this).parent().prev().prev().prev().prev().prev().prev().text();
+			   
+			   $("#editProduct #title").val(title);
+			   $("#editProduct #description").val(desc);
+			   $("#editProduct #color").val(color);
+			   $("#editProduct #conditions").val(condition);
+			   $("#editProduct #price").val(price);
+			   $("#editProduct #quantity").val(quantity);
+			   $("#editProduct #id").val($(this).attr('data-id'));
 				
 			}); 
 		   /*  Submit form using Ajax */
-		   $('#add, #save').click(function(e) {
+		   $('#add, #edit').click(function(e) {
 			   e.preventDefault();
 			   $(".error-msg").hide();
-			   console.log($(this).attr('id'));
-			   //return;
-		   /* 
-		      //Prevent default submission of form
-		      e.preventDefault();
-		      
-		      //Remove all errors
-		      $('input').next().remove(); */
+			   const buttonId = $(this).attr('id');
+			   console.log(buttonId);
+			   const formId = "#" + buttonId + "Product";
 		      
 		      $.post({
-		         url : 'saveProduct',
+		         url : 'saveProduct' + '/' + buttonId,
 		         method: 'POST',
-		         data : $('#addProduct').serialize(),
+		         data : $(formId).serialize(),
 		         dataType: 'json',
 		         type:'json',
-		         success : function(res) {
-		         	console.log(res);
-		            if(res.status == "SUCCESS"){
-		               //Set response
-		               /* $('#resultContainer pre code').text(JSON.stringify(res.employee));
-		               $('#resultContainer').show(); */
-		               $("#addEmployeeModal").modal('hide');
+		         success : function(res) {		         	
+		            if(res.status == "SUCCESS"){		               
+		               if(res.type == "add") $("#addProductModal").modal('hide');
+		              else	$("#editProductModal").modal('hide');
 		            
-		            }else{
-		              //Set error messages
-		              /* $.each(res.errorMessages,function(key,value){
-		  	            $('input[name='+key+']').after('<span class="error">'+value+'</span>');
-		              }); */
+		            }else{		            
 		            	var errorInfo = "";		            	
  		                for(var i = res.result.length -1 ; i >= 0 ; i--){ 
  		                	errorInfo += "<br>"+ res.result[i].defaultMessage;
  		               }
- 		               $(".error-msg").html(errorInfo);
- 		              $(".error-msg").show();
+ 		               if(res.type == "add") {
+ 		                	$("#addProduct .error-msg").html(errorInfo);
+ 	 		               	$("#addProduct .error-msg").show();
+					   }
+ 		              else { 		            	 	
+	                	$("#editProduct .error-msg").html(errorInfo);
+ 		               	$("#editProduct .error-msg").show();
+					   } 		               
 		            }
 		         }
 		      })

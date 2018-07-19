@@ -5,6 +5,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -20,7 +21,7 @@ import waa.mum.edu.service.impl.ProductService;
 @RequestMapping({"/","/products"})
 public class ProductController {
 	@Autowired
-	ProductService productService;
+        ProductService productService;
  
 	
  	@RequestMapping(value={"","/list"})
@@ -34,28 +35,60 @@ public class ProductController {
 	public String listProductsAdmin(Model model) {
         model.addAttribute("products",productService.getAllProduct());
         model.addAttribute("product",new Product());
- 		
  		return "products-admin";
 	}
 	
- 	@RequestMapping(value="/saveProduct")
+ 	@RequestMapping(value="/saveProduct/add")
+ 	public @ResponseBody
+        JsonResponse addProduct(@Valid @ModelAttribute("product") Product productToBeAdded,
+ 			BindingResult bindingResult) {
+ 		JsonResponse res = new JsonResponse();
+ 		if (bindingResult.hasErrors()) {
+ 			res.setStatus("FAIL"); 
+ 			res.setType("add");
+ 			res.setResult(bindingResult.getAllErrors());
+		}else {	
+			productService.saveProduct(productToBeAdded);
+			res.setStatus("SUCCESS");
+			res.setType("add");            
+		}
+		return res;
+ 	}
+ 	
+ 	
+ 	@RequestMapping(value="/saveProduct/edit")
  	public @ResponseBody
         JsonResponse saveProduct(@Valid @ModelAttribute("product") Product productToBeAdded,
  			BindingResult bindingResult) {
  		JsonResponse res = new JsonResponse();
  		if (bindingResult.hasErrors()) {
- 			res.setStatus("FAIL"); 			
+ 			res.setStatus("FAIL"); 
+ 			res.setType("edit");
  			res.setResult(bindingResult.getAllErrors());
-		}else {	
-			productService.saveProduct(productToBeAdded);
-			res.setStatus("SUCCESS");
-            //res.setResult(userList);			
-		}
- 		
- 		System.out.println(productToBeAdded);
-		return res; 		
- 		//return "products-admin";
+ 		}else {	
+ 			productService.saveProduct(productToBeAdded);
+ 			res.setStatus("SUCCESS");
+ 			res.setType("edit");
+ 		} 		
+ 		return res; 
  	}
+ 	
+ 	@RequestMapping(value="/deleteProduct/{id}")
+ 	public @ResponseBody
+        JsonResponse deleteProduct (Model model, @PathVariable("id") Long productId) {
+ 		JsonResponse res = new JsonResponse();
+		System.out.println(productId);
+		try {
+			productService.deleteProduct(productId);
+			res.setStatus("SUCCESS");
+			res.setType("edit");
+		} catch (Exception up) {
+	      System.out.println("Transaction Failed!!!" + up.getMessage());
+ 
+		}
+ 		return res; 
+ 	}
+ 	
  	
  	
   	/*@RequestMapping("/employee/{number}")
