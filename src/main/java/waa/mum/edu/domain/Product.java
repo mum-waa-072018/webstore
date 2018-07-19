@@ -2,6 +2,8 @@ package waa.mum.edu.domain;
 
 import org.hibernate.validator.constraints.NotEmpty;
 
+import java.io.Serializable;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -10,9 +12,11 @@ import javax.persistence.Id;
 import javax.validation.constraints.Min;
 
 @Entity
-public class Product {
+public class Product implements Serializable {
 
-    @Id
+	private static final long serialVersionUID = 1L;
+	
+	@Id
     @Column
     @GeneratedValue(strategy = GenerationType.AUTO)
  	private Long id;
@@ -53,7 +57,7 @@ public class Product {
 	}
 	@Column
 	private String color;
-	
+
 	public Long getId() {
 		return id;
 	}

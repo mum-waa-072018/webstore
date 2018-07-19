@@ -21,6 +21,9 @@
 					 <a href="<spring:url value='/employees/list' />" class="btn btn-default">
 						<span class="glyphicon-hand-left glyphicon"></span> Go to Company
 					</a>
+					<a href="<spring:url value='/checkout?cartId=1' />" class="btn btn-default">
+						<span class="glyphicon-hand-left glyphicon"></span> Checkout
+					</a>
 				</div>	
 		</div>	
 	</section>
