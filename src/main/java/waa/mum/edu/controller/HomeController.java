@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import waa.mum.edu.service.EmployeeService;
   
-@Controller
+//@Controller
 public class HomeController {
 
 	

@@ -17,7 +17,7 @@ import waa.mum.edu.service.impl.ProductService;
 
 
 @Controller
-@RequestMapping({"/products"})
+@RequestMapping({"/","/products"})
 public class ProductController {
 	@Autowired
 	ProductService productService;

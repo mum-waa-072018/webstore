@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.ImportResource;
+import org.springframework.core.annotation.Order;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -14,9 +15,10 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 
 import javax.sql.DataSource;
 
-//@Configuration
-//@EnableWebSecurity
-//@ImportResource("WEB-INF/applicationContext.xml")
+@Configuration
+@EnableWebSecurity
+@Order(-10000)
+@ImportResource("WEB-INF/applicationContext.xml")
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
   @Autowired
@@ -26,16 +28,16 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 //  private UserServiceImpl userService;
 
 //  @Bean
-  @Autowired
-  public PasswordEncoder encoder() {
-    return new BCryptPasswordEncoder();
-  }
+//  @Autowired
+//  public PasswordEncoder encoder() {
+//    return new BCryptPasswordEncoder();
+//  }
 
   @Bean
   public DaoAuthenticationProvider authProvider() {
     DaoAuthenticationProvider authProvider = new DaoAuthenticationProvider();
 //    authProvider.setUserDetailsService(userService);
-    authProvider.setPasswordEncoder(encoder());
+//    authProvider.setPasswordEncoder(encoder());
     return authProvider;
   }
 
@@ -44,8 +46,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     try {
       auth.authenticationProvider(authProvider());
       auth.jdbcAuthentication().dataSource(dataSource)
-          .usersByUsernameQuery("select username,password, enabled from users where username=?")
-          .authoritiesByUsernameQuery("select username, role from user_roles where username=?");
+          .usersByUsernameQuery("select firstName,password from users where username=?")
+          .authoritiesByUsernameQuery("select userName, userRole from Role where username=?");
     } catch (Exception e) {
       e.printStackTrace();
     }
@@ -54,14 +56,14 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
   @Override
   protected void configure(HttpSecurity security) throws Exception {
 
-    security.formLogin().loginPage("/login")
-        .usernameParameter("userId")
+    security.formLogin().loginPage("/loginPage")
+        .usernameParameter("firstName")
         .passwordParameter("password");
 
     security.formLogin().defaultSuccessUrl("/")
-        .failureUrl("/login?error");
+        .failureUrl("/loginPage?error");
 
-    security.exceptionHandling().accessDeniedPage("/login?accessDenied");
+    security.exceptionHandling().accessDeniedPage("/loginPage?accessDenied");
 
 //    security.authorizeRequests()
 //        .antMatchers("/").permitAll()
