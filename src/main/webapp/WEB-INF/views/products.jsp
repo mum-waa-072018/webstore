@@ -6,6 +6,7 @@
 <title>Products</title>
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/css/bootstrap.min.css" integrity="sha384-Smlep5jCw/wG7hdkwQ/Z5nLIefveQRIY9nfy6xoR1uRYBtpZgI6339F5dgvm/e9B" crossorigin="anonymous">
 <link rel="stylesheet" href="src="<spring:url value='/resource/js/holder.min.js' />">
+  <script src="http://cdn.bootcss.com/jquery/1.11.1/jquery.min.js"></script>
 </head>
 <body>
 	<header>
@@ -64,6 +65,7 @@
 	                    <div class="btn-group">
 	                      <button type="button" class="btn btn-sm btn-outline-secondary">View Details</button>
 	                      <button type="button" class="btn btn-sm btn-outline-secondary">Add to Cart</button>
+                          <button type="button" class="btn btn-sm btn-outline-secondary" onclick="contact()">Contact Seller</button>
 	                    </div>
 	                    <small class="text-muted">$${product.price} </small>
 	                  </div>
@@ -84,6 +86,12 @@
       </div>
     </footer>
     <script type="text/javascript" src="<spring:url value='/resource/js/holder.min.js' />">
+
     </script>
+<script>
+  function contact(){
+    window.open("chatroom/toChatroom","_blank");
+  }
+</script>
 </body>
 </html>
