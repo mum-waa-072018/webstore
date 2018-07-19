@@ -1,4 +1,4 @@
- use lightning;
+use lightning;
 
 -- INSERT INTO `location` VALUES (NULL,'442 Glenwood Avenue','Culver City','CA', '87547');
 -- INSERT INTO `location` VALUES (NULL,'1 Yellow Brook Road','Emerald City','OZ', '12345');

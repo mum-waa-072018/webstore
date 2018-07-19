@@ -1,5 +1,7 @@
 package waa.mum.edu.domain;
 
+import java.io.Serializable;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -7,7 +9,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 @Entity(name="location")
-public class Address {
+public class Address implements Serializable{
 
     @Id
 	@GeneratedValue(strategy=GenerationType.AUTO)

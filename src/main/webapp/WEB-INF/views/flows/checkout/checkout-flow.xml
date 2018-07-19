@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<flow xmlns="http://www.springframework.org/schema/webflow"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="
+		http://www.springframework.org/schema/webflow http://www.springframework.org/schema/webflow/spring-webflow.xsd">
+	
+	<var name="order" class="waa.mum.edu.domain.Order"/>
+	
+	<action-state id="init">
+		<evaluate expression="checkoutHelper.validateCart(requestParameters.cartId)" result="order.cart" />
+		<transition on-exception="waa.mum.edu.exception.InvalidCartException" to="invalidCart" />
+		<transition to="shipping" />
+	</action-state>
+	
+	<view-state id="invalidCart" view="flows/checkout/invalid-cart">
+		<transition on="close" to="home" />
+	</view-state>
+	
+	<view-state id="shipping" view="flows/checkout/shipping-form" model="order">
+		<transition on="billing" to="billing"></transition>
+	</view-state>
+	
+	<view-state id="billing" view="flows/checkout/billing-form" model="order">
+		<transition on="shipping" to="shipping" />
+		<transition on="confirm" to="confirm" />
+	</view-state>
+	
+	<view-state id="confirm" view="flows/checkout/confirm" model="order">
+		<transition on="shipping" to="shipping" />
+		<transition on="billing" to="billing" />
+		<transition on="success" to="success" />
+	</view-state>
+	
+	<end-state id="success" view="flows/checkout/success" />
+	
+	<end-state id="home" view="externalRedirect:contextRelative:/products"></end-state>
+	
+	<global-transitions>
+		<transition on="home" to="home" />
+	</global-transitions>
+</flow>

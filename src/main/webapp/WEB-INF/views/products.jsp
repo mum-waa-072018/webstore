@@ -7,6 +7,7 @@
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/css/bootstrap.min.css" integrity="sha384-Smlep5jCw/wG7hdkwQ/Z5nLIefveQRIY9nfy6xoR1uRYBtpZgI6339F5dgvm/e9B" crossorigin="anonymous">
 <link rel="stylesheet" href="<spring:url value='/resource/js/holder.min.js' />">
   <script src="http://cdn.bootcss.com/jquery/1.11.1/jquery.min.js"></script>
+<script src="<spring:url value='/resource/js/product.js' />"></script>
 </head>
 <body>
 	<header>      
@@ -26,19 +27,20 @@
       
     </header>
     <main role="main">
-      <!-- <section class="jumbotron text-center"> -->
-        <%--<div class="container">--%>
-          <%--<h1 class="jumbotron-heading">Album example</h1>--%>
-          <%--<p class="lead text-muted">Something short and leading about the collection below—its contents, the creator, etc. Make it short and sweet, but not too short so folks don't simply skip over it entirely.</p>--%>
-          <%--<p>--%>
-            <%--<a href="#" class="btn btn-primary my-2">Main call to action</a>--%>
-            <%--<a href="#" class="btn btn-secondary my-2">Secondary action</a>--%>
-          <%--</p>--%>
-        <%--</div>--%>
-     <!--  </section> -->		
+      <section class="jumbotron text-center">
+        <div class="container">
+          <h1 class="jumbotron-heading">Album example</h1>
+          <p class="lead text-muted">Something short and leading about the collection below—its contents, the creator, etc. Make it short and sweet, but not too short so folks don't simply skip over it entirely.</p>
+          <p>
+            <a id="viewCart" href="<spring:url value='/cart' />" class="btn btn-primary my-2">View cart</a>
+            <a href="#" class="btn btn-secondary my-2">Secondary action</a>
+          </p>
+        </div>
+      </section>		
       <div class="album py-5 bg-light">
         <div class="container">
           <div class="row">
+          	
 	          <c:forEach items="${products}" var="product">          
 	            <div class="col-md-4">
 	              <div class="card mb-4 box-shadow">
@@ -50,7 +52,9 @@
 	                  <div class="d-flex justify-content-between align-items-center">
 	                    <div class="btn-group">
 	                      <%--<button type="button" class="btn btn-sm btn-outline-secondary">View Details</button>--%>
-	                      <button type="button" class="btn btn-sm btn-outline-secondary"><spring:message code="product.addToCart" /></button>
+	                      <button type="button" class="addToCartBtn btn btn-sm btn-outline-secondary" 
+	                      	data-product='{"id":${product.id}, "title":"${product.title}", "description":"${product.description}", "condition":"${product.conditions}", "price":${product.price}, "quantity":${product.quantity}}' >
+	                      	<spring:message code="product.addToCart" /></button>
                           <button type="button" class="btn btn-sm btn-outline-secondary" onclick="contact()"><spring:message code="product.contactSeller" /></button>
 	                    </div>
 	                    <small class="text-muted"><spring:message code="product.currency" />${product.price} </small>
