@@ -23,6 +23,7 @@ import waa.mum.edu.domain.Role;
 import waa.mum.edu.domain.Telephone;
 import waa.mum.edu.domain.User;
 import waa.mum.edu.service.UserService;
+import waa.mum.edu.util.UserSessionUtil;
 
 
 @Controller
@@ -90,5 +91,11 @@ public class UserController {
     roles.add(role);
     User user = new User("Yuliang", "Jin", new Date(), address, roles, telephone, "kjkjk");
     return user;
+  }
+
+  @RequestMapping(value = "logout", method = RequestMethod.GET)
+  public String logout() {
+    UserSessionUtil.logoutUser();
+    return "redirect:/products";
   }
 }

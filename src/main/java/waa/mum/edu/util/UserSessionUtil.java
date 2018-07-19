@@ -51,6 +51,10 @@ public class UserSessionUtil {
 	public static void setUser(User user) {
 		addSessionAttribute("USER_SESSION_KEY", user);
 	}
+
+	public static void logoutUser() {
+		removeSessionAttribute("USER_SESSION_KEY");
+	}
 	
 	
 	public static void setObjectToSession(Object obj,String key) {
@@ -62,6 +66,13 @@ public class UserSessionUtil {
 		HttpSession session = getSession();
 		if (session != null) {
 			session.setAttribute(attributeKey, object);
+		}
+	}
+
+	private static void removeSessionAttribute(String attributeKey) {
+		HttpSession session = getSession();
+		if (session != null) {
+			session.removeAttribute(attributeKey);
 		}
 	}
 	private static HttpSession getSession() {
