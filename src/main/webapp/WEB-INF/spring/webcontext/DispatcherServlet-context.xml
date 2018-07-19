@@ -9,8 +9,8 @@
 		http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-4.0.xsd">
 
 
-	<mvc:annotation-driven />
-	<context:component-scan base-package="waa.mum.edu.controller" />
+	<mvc:annotation-driven validator="validator" />
+	<context:component-scan base-package="waa.mum.edu" />
 
 
 	<bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
@@ -19,9 +19,12 @@
 	</bean>
 	
 	<bean id= "messageSource" class="org.springframework.context.support.ResourceBundleMessageSource">
-   		<property name="basename" value="messages"/> 
+   		<property name="basename" value="classpath:errorMessages"/>
 	</bean>
-	
+
+	<bean id="validator" class="org.springframework.validation.beanvalidation.LocalValidatorFactoryBean">
+		<property name="validationMessageSource" ref="messageSource" />
+	</bean>
 	<mvc:resources  location="/resources/"  mapping="/resource/**"/>
 
  </beans>

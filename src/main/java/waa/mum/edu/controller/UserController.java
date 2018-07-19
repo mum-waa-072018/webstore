@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -14,6 +15,8 @@ import org.springframework.web.servlet.ModelAndView;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+
+import javax.validation.Valid;
 
 import waa.mum.edu.domain.Address;
 import waa.mum.edu.domain.Role;
@@ -38,7 +41,7 @@ public class UserController {
     return phone;
   }
 
-  @RequestMapping(value = "user", method = RequestMethod.GET)
+  @RequestMapping(value = "register", method = RequestMethod.GET)
   public ModelAndView getRegistrationPage(@ModelAttribute Telephone phone, Model model) {
     ArrayList<Telephone> telephones = new ArrayList<>();
     model.addAttribute("phoneList", telephones);
@@ -65,7 +68,10 @@ public class UserController {
 //  }
 
   @RequestMapping(value = "user", method = RequestMethod.POST)
-  public String register(@ModelAttribute User user, Model model) {
+  public String register(@Valid @ModelAttribute User user, BindingResult bindingResult, Model model) {
+    if(bindingResult.hasErrors()) {
+      return "register";
+    }
     userService.addUser(user);
     System.out.println("WWW:" + user.toString());
     return "loginPage";

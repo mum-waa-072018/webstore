@@ -47,6 +47,9 @@
                         <label for="firstName">First name</label>
                         <form:input type="text" path="firstName" class="form-control" id="firstName" placeholder=""
                                     value="" required="true" />
+                        <div style="text-align: center;">
+                            <form:errors path="firstName" cssStyle="color : red;" />
+                        </div>
                         <div class="invalid-feedback">
                             Valid first name is required.
                         </div>
@@ -67,7 +70,8 @@
                         <div class="input-group-prepend">
                             <span class="input-group-text">@</span>
                         </div>
-                        <form:input path="password" type="text" class="form-control" id="password" required="true" />
+                        <form:input path="password" type="password" class="form-control" id="password"
+                                    required="true" />
                         <div class="invalid-feedback" style="width: 100%;">
                             Your password is required.
                         </div>

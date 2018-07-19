@@ -23,7 +23,7 @@ public class User {
   @GeneratedValue(strategy = GenerationType.AUTO)
   private long id;
 
-  @Size(min=2, max = 20)
+  @Size(min=2, max = 20, message = "{firstname.message}")
   private String firstName;
 
   @NotEmpty
