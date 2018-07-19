@@ -52,7 +52,7 @@ public class ChatController {
 		User user =UserSessionUtil.currentUser();
 
 		if(null==user){
-			return "redirect:/login";
+			return "redirect:/loginPage";
 		}
 		List<Message> chatRecords = messageService.getLatestTenMessages();
 		model.addAttribute("chatRecords",chatRecords);
