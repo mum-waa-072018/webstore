@@ -26,10 +26,11 @@ public class User {
   @Size(min=2, max = 20, message = "{firstname.message}")
   private String firstName;
 
+  @Size(min=6, max = 8, message = "{firstname.message}")
   @NotEmpty
   private String password;
 
-  @Size(min=3, max=20)
+  @Size(min=3, max=20, message = "{firstname.message}")
   private String lastName;
 
   @Past
