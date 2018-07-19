@@ -74,9 +74,9 @@ $(document).ready(function() {
 			dataType: "json",
 			contentType: "application/json",
 			data: sessionStorage.getItem("cart"),
-			beforeSend: function(request) {
-			    request.setRequestHeader(header, token);
-			},
+//			beforeSend: function(request) {
+//			    request.setRequestHeader(header, token);
+//			},
 			success: function(cart) {
 //				console.log("success");
 				location.href = contextRoot + "/checkout?cartId=" + cart.id;
