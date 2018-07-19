@@ -17,5 +17,6 @@ INSERT INTO `Product` VALUES (NULL,'rose gold', 'Refurbished', "The brand new Le
 INSERT INTO `Product` VALUES (NULL,'red', 'Used', "The brand new Hp Envy", 750.00, 10, "Hp Envy")
 
 
-  INSERT INTO `User` VALUES ('1', '2018-07-17 20:14:46', 'Wenqiang', 'Li', '1',null), ('2', '2018-07-17 20:15:03', 'GG', 'E', '2',null);
+  INSERT INTO `User` VALUES ('1', '2018-07-17 20:14:46', 'Wenqiang', 'Li', '1',null), ('2', '2018-07-17 20:15:03',
+  'GG', 'E', '2',null),('3', '2018-07-17 20:14:46', 'user', 'user', '3','3');
 

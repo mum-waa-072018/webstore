@@ -13,11 +13,11 @@ public class Telephone {
   @Id
   @GeneratedValue(strategy = GenerationType.AUTO)
   private Long id;
-  @Range(min=100, max=999)
+  @Range(min=100, max=999, message = "{area.message}")
   private String area;
-  @Range(min=100, max=999, message = "{Telephone.pre}")
+  @Range(min=100, max=999, message = "{prefix.message}")
   private String pre;
-  @Range(min=1000, max = 9999)
+  @Range(min=1000, max = 9999, message = "{number.message}")
   private String number;
 
   @Transient

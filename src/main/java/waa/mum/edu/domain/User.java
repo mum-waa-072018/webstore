@@ -14,6 +14,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
+import javax.validation.Valid;
 import javax.validation.constraints.Past;
 import javax.validation.constraints.Size;
 
@@ -30,7 +31,7 @@ public class User {
   @NotEmpty
   private String password;
 
-  @Size(min=3, max=20, message = "{firstname.message}")
+  @Size(min=3, max=20, message = "{User.Size.Validation}")
   private String lastName;
 
   @Past
@@ -42,6 +43,7 @@ public class User {
   @OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 //  @JoinColumn(name="user_id")
   @JoinColumn(name = "phone_id")
+  @Valid
   private Telephone phone;
 
   @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)

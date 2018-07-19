@@ -58,6 +58,9 @@
                         <label for="lastName">Last name</label>
                         <form:input path="lastName" type="text" class="form-control" id="lastName" placeholder="" value=""
                                     required="true" />
+                        <div style="text-align: center;">
+                            <form:errors path="lastName" cssStyle="color : red;" />
+                        </div>
                         <div class="invalid-feedback">
                             Valid last name is required.
                         </div>
@@ -72,6 +75,9 @@
                         </div>
                         <form:input path="password" type="password" class="form-control" id="password"
                                     required="true" />
+                        <div style="text-align: center;">
+                            <form:errors path="password" cssStyle="color : red;" />
+                        </div>
                         <div class="invalid-feedback" style="width: 100%;">
                             Your password is required.
                         </div>
@@ -83,6 +89,9 @@
                         <label for="areaCode">Area Code</label>
                         <form:input type="text" path="phone.area" class="form-control" id="areaCode" placeholder=""
                                     value="" required="true" />
+                        <div style="text-align: center;">
+                            <form:errors path="phone.area" cssStyle="color : red;" />
+                        </div>
                         <div class="invalid-feedback">
                             Valid areaCode is required.
                         </div>
@@ -92,6 +101,9 @@
                         <form:input path="phone.pre" type="text" class="form-control" id="prefix" placeholder=""
                                     value=""
                                     required="true" />
+                        <div style="text-align: center;">
+                            <form:errors path="phone.pre" cssStyle="color : red;" />
+                        </div>
                         <div class="invalid-feedback">
                             Valid prefix is required.
                         </div>
@@ -101,6 +113,9 @@
                         <form:input path="phone.number" type="text" class="form-control" id="number" placeholder=""
                                     value=""
                                     required="true" />
+                        <div style="text-align: center;">
+                            <form:errors path="phone.number" cssStyle="color : red;" />
+                        </div>
                         <div class="invalid-feedback">
                             Valid number is required.
                         </div>

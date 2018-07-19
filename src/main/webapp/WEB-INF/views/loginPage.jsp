@@ -22,7 +22,11 @@
             <h4 class="mb-3">User Login</h4>
             <form:form modelAttribute="user" id="login" action="/loginPage" method="post" class="form-signin">
                 <img class="mb-4" src="https://getbootstrap.com/assets/brand/bootstrap-solid.svg" alt="" width="72" height="72">
-                <h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
+                <c:if test="${param.invalid != null}">
+                    <div class="alert alert-danger" cssStyle="color : red;">
+                        <p>Invalid username and password.</p>
+                    </div>
+                </c:if>
                 <label for="userName" class="sr-only">UserName</label>
                 <form:input path="firstName" type="text" id="userName" class="form-control" placeholder="user name" required="ture" />
                 <label for="password" class="sr-only">Password</label>

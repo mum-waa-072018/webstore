@@ -45,7 +45,8 @@ public class LoginController {
 
   @ExceptionHandler(InvalidLoginInfoException.class)
   public String processException(InvalidLoginInfoException e, Model model) {
+    model.addAttribute("user", new User());
     model.addAttribute("error", e.getMessage());
-    return "loginPage";
+    return "redirect:/loginPage?invalid";
   }
 }
