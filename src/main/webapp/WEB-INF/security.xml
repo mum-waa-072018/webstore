@@ -10,13 +10,17 @@
         <intercept-url pattern="/products/admin" access="hasRole('ROLE_ADMIN')" />
         <intercept-url pattern="/products/saveProduct/add" access="hasRole('ROLE_ADMIN')" />
         <intercept-url pattern="/products/saveProduct/edit" access="hasRole('ROLE_ADMIN')" />
+        <form-login login-page='/login'
+                    default-target-url="/"
+                    authentication-failure-url="/login?invalid" />
+        <logout logout-success-url="/login" />
         <csrf disabled="true" />
     </http>
 
     <authentication-manager>
         <authentication-provider>
             <user-service>
-                <user name="admin" password="nimda" authorities="ROLE_ADMIN" />
+                <user name="admin" password="admin" authorities="ROLE_ADMIN" />
             </user-service>
         </authentication-provider>
     </authentication-manager>

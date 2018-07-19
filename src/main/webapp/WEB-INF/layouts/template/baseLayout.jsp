@@ -66,7 +66,7 @@
          </p>
       </div>
 
-      <div class="row">
+      <div class="header">
          <tiles:insertAttribute name="content" />
       </div>
 

@@ -24,6 +24,12 @@ public class LoginController {
     return "loginPage";
   }
 
+  @RequestMapping(value = "login", method = RequestMethod.GET)
+  public String getLoginPageAdmin(Model model) {
+    model.addAttribute("user", new User());
+    return "login";
+  }
+
 
   @RequestMapping(value = "loginPage", method = RequestMethod.POST)
   public String login(User user) {
@@ -49,4 +55,5 @@ public class LoginController {
     model.addAttribute("error", e.getMessage());
     return "redirect:/loginPage?invalid";
   }
+
 }
