@@ -2,45 +2,31 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <title>Products</title>
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/css/bootstrap.min.css" integrity="sha384-Smlep5jCw/wG7hdkwQ/Z5nLIefveQRIY9nfy6xoR1uRYBtpZgI6339F5dgvm/e9B" crossorigin="anonymous">
-<link rel="stylesheet" href="src="<spring:url value='/resource/js/holder.min.js' />">
+<link rel="stylesheet" href="<spring:url value='/resource/js/holder.min.js' />">
   <script src="http://cdn.bootcss.com/jquery/1.11.1/jquery.min.js"></script>
 </head>
 <body>
-	<header>
-      <div class="collapse bg-dark" id="navbarHeader">
-        <div class="container">
-          <div class="row">
-            <div class="col-sm-8 col-md-7 py-4">
-              <h4 class="text-white">About</h4>
-              <p class="text-muted">Add some information about the album below, the author, or any other background context. Make it a few sentences long so folks can pick up some informative tidbits. Then, link them off to some social networking sites or contact information.</p>
-            </div>
-            <div class="col-sm-4 offset-md-1 py-4">
-              <h4 class="text-white">Contact</h4>
-              <ul class="list-unstyled">
-                <li><a href="#" class="text-white">Follow on Twitter</a></li>
-                <li><a href="#" class="text-white">Like on Facebook</a></li>
-                <li><a href="#" class="text-white">Email me</a></li>
-              </ul>
-            </div>
-          </div>
-        </div>
-      </div>
+	<header>      
       <div class="navbar navbar-dark bg-dark box-shadow">
         <div class="container d-flex justify-content-between">
-          <a href="#" class="navbar-brand d-flex align-items-center">            
-            <strong>Lightning</strong>
+          <a href="#" class="navbar-brand d-flex align-items-center">
+          	<img width="30" height="30" id="logo" alt="logo" src="<spring:url value='/resource/images/logo.png' />">            
+            <strong>Lightning - Fast & Influential</strong>
           </a>
-          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarHeader" aria-controls="navbarHeader" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-          </button>
+          <span class="navbar-brand d-flex align-items-right">
+          	<a href="?language=en" ><spring:message code="label.lang.en" /></a> &nbsp;||&nbsp;
+          	<a href="?language=fr" ><spring:message code="label.lang.fr" /></a>&nbsp;||&nbsp; 
+          	<a href="?language=de" ><spring:message code="label.lang.de" /></a>
+          </span>
         </div>
       </div>
+      
     </header>
     <main role="main">
-      <section class="jumbotron text-center">
+      <!-- <section class="jumbotron text-center"> -->
         <%--<div class="container">--%>
           <%--<h1 class="jumbotron-heading">Album example</h1>--%>
           <%--<p class="lead text-muted">Something short and leading about the collection below—its contents, the creator, etc. Make it short and sweet, but not too short so folks don't simply skip over it entirely.</p>--%>
@@ -49,7 +35,7 @@
             <%--<a href="#" class="btn btn-secondary my-2">Secondary action</a>--%>
           <%--</p>--%>
         <%--</div>--%>
-      </section>		
+     <!--  </section> -->		
       <div class="album py-5 bg-light">
         <div class="container">
           <div class="row">
@@ -64,10 +50,10 @@
 	                  <div class="d-flex justify-content-between align-items-center">
 	                    <div class="btn-group">
 	                      <%--<button type="button" class="btn btn-sm btn-outline-secondary">View Details</button>--%>
-	                      <button type="button" class="btn btn-sm btn-outline-secondary">Add to Cart</button>
-                          <button type="button" class="btn btn-sm btn-outline-secondary" onclick="contact()">Contact Seller</button>
+	                      <button type="button" class="btn btn-sm btn-outline-secondary"><spring:message code="product.addToCart" /></button>
+                          <button type="button" class="btn btn-sm btn-outline-secondary" onclick="contact()"><spring:message code="product.contactSeller" /></button>
 	                    </div>
-	                    <small class="text-muted">$${product.price} </small>
+	                    <small class="text-muted"><spring:message code="product.currency" />${product.price} </small>
 	                  </div>
 	                </div>
 	              </div>
@@ -80,7 +66,7 @@
     <footer class="text-muted">
       <div class="container">
         <p class="float-right">
-          <a href="#">Back to top</a>
+          <a href="#"><spring:message code="product.backToTop" /></a>
         </p>
         <p>&copy; Lightning </p>     	
       </div>
