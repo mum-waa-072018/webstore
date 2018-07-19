@@ -32,7 +32,7 @@ public class LoginController {
     if(userByName != null && userByName.getPassword().equals(user.getPassword())) {
       System.out.println("db Users: " + userByName.toString());
       UserSessionUtil.setUser(user);
-      return "products";
+      return "redirect:/products";
     } else {
       throw new InvalidLoginInfoException();
     }

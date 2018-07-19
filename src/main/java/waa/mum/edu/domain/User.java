@@ -40,6 +40,7 @@ public class User {
 
   @OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 //  @JoinColumn(name="user_id")
+  @JoinColumn(name = "phone_id")
   private Telephone phone;
 
   @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
