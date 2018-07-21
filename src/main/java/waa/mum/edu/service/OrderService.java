@@ -1,8 +1,10 @@
 package waa.mum.edu.service;
 
-import waa.mum.edu.domain.Order;
+import waa.mum.edu.domain.CustomerOrder;
 
 public interface OrderService {
-	void save(Order order);
+	void save(CustomerOrder order);
+	
+	CustomerOrder findOne(Long orderId);
 	
 }

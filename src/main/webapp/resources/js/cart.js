@@ -41,21 +41,22 @@ $(document).ready(function() {
 			));
 			
 			enableCheckoutBtn();
+			$(".removeProduct").click(function(){
+				const productId = $(this).attr("data-productid");
+				
+				$.each(cart.items, function(i, cartItem) {
+					if(cartItem.product.id == productId) {
+						cart.items.splice(i, 1);
+						cart.totalCost -= cartItem.cost;
+						sessionStorage.setItem("cart", JSON.stringify(cart));
+						showCart();
+						return false;
+					}
+				});
+			}); 
 		}
 	}
 	
-	$(".removeProduct").click(function(){
-		const productId = $(this).attr("data-productid");
-		
-		$.each(cart.items, function(i, cartItem) {
-			if(cartItem.product.id == productId) {
-				cart.items.splice(i, 1);
-				cart.totalCost -= cartItem.cost;
-				sessionStorage.setItem("cart", JSON.stringify(cart));
-				showCart();
-			}
-		});
-	}); 
 	
 	const contextRoot = "";
 	const locationArr = window.location.pathname.split( '/' );
@@ -68,16 +69,16 @@ $(document).ready(function() {
 		$("#loadingMessage").html("Loading...");
 		productId = $(this).attr("data-id");
 		$.ajax({
-			url: contextRoot + "/cart",
+			url: contextRoot + "/order",
 			type: "post",
 			contentType: "application/json",
 			data: sessionStorage.getItem("cart"),
-			success: function(cartId) {
-				if(cartId=="loginPage") {
+			success: function(orderId) {
+				if(orderId=="loginPage") {
 					location.href = contextRoot + "/loginPage";
 				} else{
 					sessionStorage.removeItem("cart");
-					location.href = contextRoot + "/checkout?cartId=" + cartId;
+					location.href = contextRoot + "/checkout?orderId=" + orderId;
 				}
 				
 			},

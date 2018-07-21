@@ -3,18 +3,6 @@
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="ISO-8859-1">
-<title>Shipping Details</title>
-<link rel="stylesheet" type="text/css"
-	href="<spring:url value='/resource/css/cart.css'/>" />
-</head>
-<body>
-	<div class="heading">
-		<h2>Shipping Details</h2>
-	</div>
 
 	<div class="container">
 
@@ -65,5 +53,3 @@
 				- Billing Info</button>
 		</form:form>
 	</div>
-</body>
-</html>

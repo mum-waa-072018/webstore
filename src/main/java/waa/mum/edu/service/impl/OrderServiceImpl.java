@@ -1,12 +1,11 @@
 package waa.mum.edu.service.impl;
 
 
-import org.springframework.transaction.annotation.Transactional;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
-import waa.mum.edu.domain.Order;
+import waa.mum.edu.domain.CustomerOrder;
 import waa.mum.edu.repository.OrderRepository;
 import waa.mum.edu.service.OrderService;
 
@@ -18,9 +17,15 @@ public class OrderServiceImpl implements OrderService {
 	OrderRepository orderRepository;
 	
 	@Override
-	public void save(Order order) {
+	public void save(CustomerOrder order) {
 		
 		orderRepository.save(order);
+	}
+
+	@Override
+	public CustomerOrder findOne(Long orderId) {
+		
+		return orderRepository.findOne(orderId);
 	}
 
 }

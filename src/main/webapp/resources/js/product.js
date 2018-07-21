@@ -12,6 +12,8 @@ $(document).ready(function() {
 		cart = JSON.parse(serializedCart);
 	}
 	
+	showItemsCount();
+	
 	$(".addToCartBtn").click(function(){
 		const productSerialized = $(this).attr("data-product");
 		var product = JSON.parse(productSerialized);
@@ -35,7 +37,22 @@ $(document).ready(function() {
 		} 
 		cart.totalCost += cartItem.product.price;
 		sessionStorage.setItem("cart", JSON.stringify(cart));
-		alert(cartItem.product.title + " added to cart");
+		//alert(cartItem.product.title + " added to cart");
+		showItemsCount();
+		showAddedNotification(product.id)
 	});
+	
+	function showItemsCount() {
+		if(cart.items.length == 0) {
+			$("#cartItemsCount").html("No");
+		} else {
+			$("#cartItemsCount").html(cart.items.length);
+		}
+	}
+	
+	function showAddedNotification(productId) {
+		$("#addedToCartNotification" + productId).addClass("bg-success");
+		setTimeout(function() { $("#addedToCartNotification" + productId).removeClass("bg-success"); }, 500);
+	}
 
 });

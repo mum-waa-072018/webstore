@@ -14,7 +14,7 @@ import javax.persistence.Transient;
 import javax.validation.Valid;
 
 @Entity
-public class Order implements Serializable {
+public class CustomerOrder implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
@@ -27,15 +27,13 @@ public class Order implements Serializable {
 	@JoinColumn(name = "order_id", unique = true)
 	private Cart cart;
 
-	@Valid
 	@Transient
 	private Address shippingAddress;
 
-	@Valid
 	@Transient
 	private BillingInfo billingInfo;
 	
-	public Order() {
+	public CustomerOrder() {
 		cart = new Cart();
 		shippingAddress = new Address();
 		billingInfo = new BillingInfo();

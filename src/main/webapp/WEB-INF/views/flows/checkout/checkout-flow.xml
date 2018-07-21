@@ -4,13 +4,13 @@
 	xsi:schemaLocation="
 		http://www.springframework.org/schema/webflow http://www.springframework.org/schema/webflow/spring-webflow.xsd">
 	
-	<var name="order" class="waa.mum.edu.domain.Order"/>
+	<var name="order" class="waa.mum.edu.domain.CustomerOrder"/>
 	<var name="shippingAddress" class="waa.mum.edu.domain.Address"/>
 	<var name="billingInfo" class="waa.mum.edu.domain.BillingInfo"/>
 	
 	<action-state id="init">
-		<evaluate expression="checkoutHelper.validateCart(requestParameters.cartId)" result="order.cart" />
-		<transition on-exception="waa.mum.edu.exception.InvalidCartException" to="invalidCart" />
+		<evaluate expression="checkoutHelper.validateOrder(requestParameters.orderId)" result="order" />
+		<transition on-exception="waa.mum.edu.exception.InvalidOrderException" to="invalidCart" />
 		<transition to="shipping" />
 	</action-state>
 	

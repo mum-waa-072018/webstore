@@ -40,5 +40,40 @@
       <put-attribute name="tagline" value="Welcome to buy things online!" />
       <put-attribute name="content" value="/WEB-INF/views/cart.jsp" />
    </definition>
+   
+   <definition name="flows/checkout/shipping-form" extends="baseLayout">
+      <put-attribute name="title" value="Shipping Information" />
+      <put-attribute name="heading" value="Lightning" />
+      <put-attribute name="tagline" value="Here is your cart Kemosabe!" />
+      <put-attribute name="content" value="/WEB-INF/views/flows/checkout/shipping-form.jsp" />
+   </definition>
+   
+   <definition name="flows/checkout/billing-form" extends="baseLayout">
+      <put-attribute name="title" value="Billing Information" />
+      <put-attribute name="heading" value="Lightning" />
+      <put-attribute name="tagline" value="Add your billing information Kemosabe!" />
+      <put-attribute name="content" value="/WEB-INF/views/flows/checkout/billing-form.jsp" />
+   </definition>
+   
+   <definition name="flows/checkout/invalid-order" extends="baseLayout">
+      <put-attribute name="title" value="Invalid order" />
+      <put-attribute name="heading" value="Lightning" />
+      <put-attribute name="tagline" value="Sorry Kemosabe, your order is invalid!" />
+      <put-attribute name="content" value="/WEB-INF/views/flows/checkout/invalid-order.jsp" />
+   </definition>
+   
+   <definition name="flows/checkout/success" extends="baseLayout">
+      <put-attribute name="title" value="Checkout successful" />
+      <put-attribute name="heading" value="Lightning" />
+      <put-attribute name="tagline" value="Checkout Successful!" />
+      <put-attribute name="content" value="/WEB-INF/views/flows/checkout/success.jsp" />
+   </definition>
+   
+   <definition name="flows/checkout/confirm" extends="baseLayout">
+      <put-attribute name="title" value="Confirm checkout" />
+      <put-attribute name="heading" value="Lightning" />
+      <put-attribute name="tagline" value="Kemosabe, Confirm checkout!" />
+      <put-attribute name="content" value="/WEB-INF/views/flows/checkout/confirm.jsp" />
+   </definition>
 
 </tiles-definitions>

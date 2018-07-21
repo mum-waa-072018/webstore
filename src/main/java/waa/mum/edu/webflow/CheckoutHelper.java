@@ -5,27 +5,27 @@ import org.springframework.stereotype.Component;
 
 import waa.mum.edu.domain.Address;
 import waa.mum.edu.domain.BillingInfo;
-import waa.mum.edu.domain.Cart;
-import waa.mum.edu.domain.Order;
-import waa.mum.edu.service.CartService;
+import waa.mum.edu.domain.CustomerOrder;
+import waa.mum.edu.exception.InvalidOrderException;
 import waa.mum.edu.service.OrderService;
 
 @Component
 public class CheckoutHelper {
 	
 	@Autowired
-	CartService cartService;
-	
-	@Autowired
 	OrderService orderService;
 	
-	public Cart validateCart(Long cartId) {
+	public CustomerOrder validateOrder(Long orderId) {
+		CustomerOrder order = orderService.findOne(orderId);
 		
-		return cartService.validateCart(cartId);
+		if(order != null)
+			return order;
+		
+		throw new InvalidOrderException(orderId);
 	}
 	
-	public void saveOrder(Order order, Address shippingAddress, BillingInfo billingInfo) {
-		cartService.save(order.getCart());
+	public void saveOrder(CustomerOrder order, Address shippingAddress, BillingInfo billingInfo) {
+		
 		order.setShippingAddress(shippingAddress);
 		order.setBillingInfo(billingInfo);
 		
