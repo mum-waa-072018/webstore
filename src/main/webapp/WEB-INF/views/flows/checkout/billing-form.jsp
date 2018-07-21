@@ -11,7 +11,7 @@
 </head>
 <body>
 	<h1>Billing Info</h1>
-	<form:form method="POST" modelAttribute="order.billingInfo">
+	<form:form method="POST" modelAttribute="billingInfo">
 		
 		<h2>Payment Card Details</h2>
 		<div>

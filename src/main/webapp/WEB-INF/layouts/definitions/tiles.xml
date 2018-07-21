@@ -33,5 +33,12 @@
       <put-attribute name="tagline" value="Welcome to buy things online!" />
       <put-attribute name="content" value="/WEB-INF/views/register.jsp" />
    </definition>
+   
+   <definition name="cart" extends="baseLayout">
+      <put-attribute name="title" value="Cart" />
+      <put-attribute name="heading" value="Lightning" />
+      <put-attribute name="tagline" value="Welcome to buy things online!" />
+      <put-attribute name="content" value="/WEB-INF/views/cart.jsp" />
+   </definition>
 
 </tiles-definitions>

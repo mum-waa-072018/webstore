@@ -23,9 +23,7 @@ $(document).ready(function() {
 		            '<div><h6 class="my-0">Please add some products</h6></div></li>'
 			));
 			
-			$("#checkoutBtn").attr("disabled", "disabled").on("click", function() {
-			    return false; 
-			}).css("pointer-events", "none").css("cursor", "default").css("opacity", 0.25);
+			disableCheckoutBtn();
 		} else {
 			$.each(cart.items, function(i, cartItem) {
 				$("#cartItems").append($(
@@ -42,7 +40,7 @@ $(document).ready(function() {
 		            '<strong>$' + cart.totalCost +'</strong></li>'
 			));
 			
-			$("#checkoutBtn").removeAttr("disabled").off("click");
+			enableCheckoutBtn();
 		}
 	}
 	
@@ -53,41 +51,55 @@ $(document).ready(function() {
 			if(cartItem.product.id == productId) {
 				cart.items.splice(i, 1);
 				cart.totalCost -= cartItem.cost;
-				console.log(cart);
 				sessionStorage.setItem("cart", JSON.stringify(cart));
 				showCart();
 			}
 		});
 	}); 
 	
-	var token = $("meta[name='_csrf']").attr("content");
-	var header = $("meta[name='_csrf_header']").attr("content");
-	
-	const contextRoot = "/" + window.location.pathname.split( '/' )[1];
+	const contextRoot = "";
+	const locationArr = window.location.pathname.split( '/' );
+	if(locationArr.length > 2) {
+		const contextRoot = "/" + locationArr[1];
+	}
 	
 	$("#checkoutBtn").click(function () {
+		disableCheckoutBtn();
+		$("#loadingMessage").html("Loading...");
 		productId = $(this).attr("data-id");
-		
 		$.ajax({
 			url: contextRoot + "/cart",
 			type: "post",
-			dataType: "json",
 			contentType: "application/json",
 			data: sessionStorage.getItem("cart"),
-			beforeSend: function(request) {
-			    request.setRequestHeader(header, token);
-			},
-			success: function(cart) {
-//				console.log("success");
-				location.href = contextRoot + "/checkout?cartId=" + cart.id;
+			success: function(cartId) {
+				if(cartId=="loginPage") {
+					location.href = contextRoot + "/loginPage";
+				} else{
+					sessionStorage.removeItem("cart");
+					location.href = contextRoot + "/checkout?cartId=" + cartId;
+				}
+				
 			},
 			error: function(error) {
 				alert("Failed to checkout, try again later");
+				enableCheckoutBtn();
+				$("#loadingMessage").html("");
 				console.log(error);
 			}
 		});
 		
 		return false;
 	});
+	
+	function disableCheckoutBtn() {
+		$("#checkoutBtn").attr("disabled", "disabled").on("click", function() {
+		    return false; 
+		}).css("pointer-events", "none").css("cursor", "default").css("opacity", 0.25);
+	}
+	
+	function enableCheckoutBtn() {
+		$("#checkoutBtn").removeAttr("disabled").off("click").css("pointer-events", "auto").css("cursor", "pointer").css("opacity", 1);
+	}
 
 });

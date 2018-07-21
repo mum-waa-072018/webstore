@@ -10,7 +10,7 @@ import org.springframework.web.servlet.view.tiles3.TilesView;
 public class TilesConfig {
 
     @Bean
-       public UrlBasedViewResolver viewResolver() {
+       public UrlBasedViewResolver tilesViewResolver() {
            UrlBasedViewResolver viewResolver = new UrlBasedViewResolver();
            viewResolver.setViewClass(TilesView.class);
            viewResolver.setOrder(-2);

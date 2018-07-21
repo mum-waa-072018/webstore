@@ -24,7 +24,7 @@ public class Cart implements Serializable {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
 
-	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+	@OneToMany(cascade=CascadeType.ALL, fetch = FetchType.EAGER)
 	@JoinColumn(name = "cart_id", unique = false)
 //	@MapKeyJoinColumn(name = "product")
 	private List<CartItem> items;
@@ -66,6 +66,11 @@ public class Cart implements Serializable {
 //		items.remove(productId);
 //		updateCost();
 //	}
+
+	@Override
+	public String toString() {
+		return "Cart [id=" + id + ", items=" + items + ", totalCost=" + totalCost + "]";
+	}
 
 	public double getTotalCost() {
 		return totalCost;

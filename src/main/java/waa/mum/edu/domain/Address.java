@@ -2,25 +2,33 @@ package waa.mum.edu.domain;
 
 import java.io.Serializable;
 
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.validation.constraints.Size;
 
-@Entity(name="location")
+import org.hibernate.validator.constraints.NotEmpty;
+
+@Entity
 public class Address implements Serializable{
 
-    @Id
+	private static final long serialVersionUID = 1L;
+
+	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
  	private long id;
 
- 	private String street;
-	private String city;
+	@NotEmpty(message="{Empty.Address.Field}")
+	private String street;
 	
- 	private String state;
+	@NotEmpty(message="{Empty.Address.Field}")
+	private String city;
 
- 	@Column(name="zip")
+	@Size(min=2, max=2, message="{Size.Address.State}")
+	private String state;
+
+	@Size(min=5, max=5, message="{Size.Address.ZipCode}")
   	private String zipCode;
 
 	public Address(String street, String city, String state, String zipCode) {

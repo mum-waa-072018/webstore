@@ -20,7 +20,7 @@
 
 		<a href="${flowExecutionUrl}&_eventId_home" class="home">Home</a>
 
-		<form:form method="POST" modelAttribute="order.shippingAddress">
+		<form:form method="POST" modelAttribute="shippingAddress">
 			<div class="form-input">
 				<form:label path="street">
 					<spring:message code="Label.Address.Street" text="Street" />: 

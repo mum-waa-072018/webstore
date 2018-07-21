@@ -12,13 +12,13 @@
 
 
 	<mvc:annotation-driven validator="validator" />
-	<context:component-scan base-package="waa.mum.edu.controller,waa.mum.edu.webstore" />
+	<context:component-scan base-package="waa.mum.edu" />
 
 
 	<bean id="viewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver">
 		<property name="prefix" value="/WEB-INF/views/" />
 		<property name="suffix" value=".jsp" />
-		
+		<property name="order" value="3"></property>
 	</bean>
 	
 	<bean id="localeResolver"
@@ -58,7 +58,7 @@
  		<webflow:flow-builder-services id="flowBuilderServices" view-factory-creator="viewFactoryCreator" validator="validator" />
  	 -->
  	
- 	<webflow:flow-builder-services id="flowBuilderServices" view-factory-creator="viewFactoryCreator" />
+ 	<webflow:flow-builder-services id="flowBuilderServices" view-factory-creator="viewFactoryCreator" validator="validator" />
  	
  	<bean class="org.springframework.webflow.mvc.servlet.FlowHandlerAdapter">
  		<property name="flowExecutor" ref="flowExecutor" />
@@ -69,6 +69,12 @@
  	</bean>
  	
  	<bean id="viewFactoryCreator" class="org.springframework.webflow.mvc.builder.MvcViewFactoryCreator" >
- 		<property name="viewResolvers" ref="viewResolver" />
+ 		<!-- <property name="viewResolvers" ref="viewResolver" /> -->
+ 		<property name="viewResolvers">
+			<list>
+				<ref bean="viewResolver" />
+				<ref bean="tilesViewResolver" />
+			</list>
+		</property>
  	</bean>
  </beans>

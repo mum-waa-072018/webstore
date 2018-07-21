@@ -3,6 +3,7 @@ package waa.mum.edu.domain;
 import java.io.Serializable;
 import java.math.BigDecimal;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -22,8 +23,8 @@ public class CartItem implements Serializable {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
 
-	@OneToOne(fetch = FetchType.EAGER)
-	@JoinColumn(name = "cart_item_id", unique = true)
+	@OneToOne(cascade=CascadeType.MERGE, fetch = FetchType.EAGER)
+	@JoinColumn(name = "cart_item_id")
 	private Product product;
 
 	@Min(value = 1, message = "{Min.CartItem.quantity}")

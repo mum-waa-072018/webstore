@@ -14,6 +14,7 @@
 <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css">
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/css/bootstrap.min.css" integrity="sha384-Smlep5jCw/wG7hdkwQ/Z5nLIefveQRIY9nfy6xoR1uRYBtpZgI6339F5dgvm/e9B" crossorigin="anonymous">
 <link rel="stylesheet" href="src="<spring:url value='/resource/css/signin.css' />">
+  <script src="http://cdn.bootcss.com/jquery/1.11.1/jquery.min.js"></script>
 
 <script
    src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.1/angular.min.js"></script>

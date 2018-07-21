@@ -8,7 +8,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import waa.mum.edu.domain.Cart;
+import waa.mum.edu.domain.User;
 import waa.mum.edu.service.CartService;
+import waa.mum.edu.util.UserSessionUtil;
 
 @Controller
 @RequestMapping("/cart")
@@ -19,11 +21,15 @@ public class CartController {
 
 	@RequestMapping(value = {""}, method = RequestMethod.POST)
 	@ResponseBody
-	public Cart getCartItems(@RequestBody Cart cart) {
-		
+	public String saveCart(@RequestBody Cart cart) {
+		User user =UserSessionUtil.currentUser();
+
+		if(null==user){
+			return "loginPage";
+		}
 		cartService.save(cart);
 		
-		return cart;
+		return cart.getId().toString();
 	}
 	
 	@RequestMapping(value="", method = RequestMethod.GET)

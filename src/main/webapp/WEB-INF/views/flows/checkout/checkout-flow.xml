@@ -5,6 +5,8 @@
 		http://www.springframework.org/schema/webflow http://www.springframework.org/schema/webflow/spring-webflow.xsd">
 	
 	<var name="order" class="waa.mum.edu.domain.Order"/>
+	<var name="shippingAddress" class="waa.mum.edu.domain.Address"/>
+	<var name="billingInfo" class="waa.mum.edu.domain.BillingInfo"/>
 	
 	<action-state id="init">
 		<evaluate expression="checkoutHelper.validateCart(requestParameters.cartId)" result="order.cart" />
@@ -16,22 +18,29 @@
 		<transition on="close" to="home" />
 	</view-state>
 	
-	<view-state id="shipping" view="flows/checkout/shipping-form" model="order">
+	<view-state id="shipping" view="flows/checkout/shipping-form" model="shippingAddress">
 		<transition on="billing" to="billing"></transition>
 	</view-state>
 	
-	<view-state id="billing" view="flows/checkout/billing-form" model="order">
+	<view-state id="billing" view="flows/checkout/billing-form" model="billingInfo">
 		<transition on="shipping" to="shipping" />
 		<transition on="confirm" to="confirm" />
 	</view-state>
 	
-	<view-state id="confirm" view="flows/checkout/confirm" model="order">
+	<view-state id="confirm" view="flows/checkout/confirm">
 		<transition on="shipping" to="shipping" />
 		<transition on="billing" to="billing" />
-		<transition on="success" to="success" />
+		<transition on="save" to="save" />
 	</view-state>
 	
-	<end-state id="success" view="flows/checkout/success" />
+	<action-state id="save">
+		<evaluate expression="checkoutHelper.saveOrder(order,shippingAddress,billingInfo)" />
+		<transition to="success" />
+	</action-state>
+	
+	<end-state id="success" view="flows/checkout/success" >
+		
+	</end-state>
 	
 	<end-state id="home" view="externalRedirect:contextRelative:/products"></end-state>
 	

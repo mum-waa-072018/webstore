@@ -34,7 +34,7 @@
 	</table>
 
 	<h2>Shipping Details</h2>
-	<c:set var="shippingAddress" value="${order.shippingAddress}" />
+	<%-- <c:set var="shippingAddress" value="${order.shippingAddress}" /> --%>
 	<a href="${flowExecutionUrl}&_eventId_shipping">Edit Shipping
 		Details</a>
 	<p>
@@ -56,7 +56,7 @@
 
 
 	<h2>Billing Details</h2>
-	<c:set var="billingInfo" value="${order.billingInfo}" />
+	<%-- <c:set var="billingInfo" value="${order.billingInfo}" /> --%>
 	<a href="${flowExecutionUrl}&_eventId_billing">Edit Billing Details</a>
 	<h3>Card</h3>
 	<p>
@@ -90,6 +90,6 @@
 	</p>
 
 	<a href="${flowExecutionUrl}&_eventId_home">Home</a>
-	<a href="${flowExecutionUrl}&_eventId_success">Confirm</a>
+	<a href="${flowExecutionUrl}&_eventId_save">Confirm</a>
 </body>
 </html>
