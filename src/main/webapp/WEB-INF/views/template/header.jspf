@@ -15,6 +15,7 @@
           <a href="<spring:url value="/products"/>" class="navbar-brand d-flex align-items-center">          
           	<img width="30" height="30" id="logo" alt="logo" src="<spring:url value='/resource/images/logo.png' />">            
             <strong>Lightning - Fast & Influential</strong>
+            
           </a>
           <span class="navbar-brand d-flex align-items-right">
           	<a href="?language=en" ><spring:message code="label.lang.en" /></a> &nbsp;||&nbsp;
@@ -22,7 +23,7 @@
           	<a href="?language=de" ><spring:message code="label.lang.de" /></a>
           </span>
           <span class="text-right">
-          	<a id="viewCart" href="<spring:url value='/cart' />" class="btn btn-primary my-2"><spring:message code="product.viewCart" /></a>
+          	<a id="viewCart" href="<spring:url value='/cart' />" class="btn btn-primary my-2"><spring:message code="product.viewCart" /> - <span id="cartItemsCount"></span> <spring:message code="product.item" /></a>
           </span>
         </div>
       </div>      
