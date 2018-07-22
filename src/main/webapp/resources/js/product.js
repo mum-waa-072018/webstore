@@ -51,8 +51,8 @@ $(document).ready(function() {
 	}
 	
 	function showAddedNotification(productId) {
-		$("#addedToCartNotification" + productId).addClass("bg-success");
-		setTimeout(function() { $("#addedToCartNotification" + productId).removeClass("bg-success"); }, 500);
+		$("#addedToCartNotification" + productId).html("Added to cart");
+		setTimeout(function() { $("#addedToCartNotification" + productId).html(".."); }, 1000);
 	}
 
 });

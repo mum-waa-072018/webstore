@@ -10,7 +10,7 @@ import javax.validation.constraints.Size;
 
 import org.hibernate.validator.constraints.NotEmpty;
 
-@Entity
+@Entity(name="location")
 public class Address implements Serializable{
 
 	private static final long serialVersionUID = 1L;
@@ -25,7 +25,7 @@ public class Address implements Serializable{
 	@NotEmpty(message="{Empty.Address.Field}")
 	private String city;
 
-	@Size(min=2, max=2, message="{Size.Field}")
+	@NotEmpty(message="{Empty.Address.Field}")
 	private String state;
 
 	@Size(min=5, max=5, message="{Size.Field}")

@@ -51,13 +51,14 @@
 	                  <div class="d-flex justify-content-between align-items-center">
 	                    <div class="btn-group">
 	                      <%--<button type="button" class="btn btn-sm btn-outline-secondary">View Details</button>--%>
-	                      <button type="button" id="addedToCartNotification${product.id}" class="addToCartBtn btn btn-sm btn-outline-secondary" 
+	                      <button type="button" class="btn btn-sm btn-outline-secondary addToCartBtn" 
 	                      	data-product='{"id":${product.id}, "title":"${product.title}", "description":"${product.description}", "condition":"${product.conditions}", "price":${product.price}, "quantity":${product.quantity}}' >
 	                      	<spring:message code="product.addToCart" /></button>
                           <button type="button" class="btn btn-sm btn-outline-secondary" onclick="contact()"><spring:message code="product.contactSeller" /></button>
 	                    </div>
 	                    <small class="text-muted"><spring:message code="product.currency" />${product.price} </small>
-	                  </div>
+	                  </div><br>
+	                  <small id="addedToCartNotification${product.id}" class="addToCartBtn text-success">...</small>
 	                </div>
 	              </div>
 	            </div>

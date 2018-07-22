@@ -1,7 +1,6 @@
 package waa.mum.edu.domain;
 
-import org.hibernate.validator.constraints.NotEmpty;
-
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -17,6 +16,8 @@ import javax.persistence.OneToOne;
 import javax.validation.Valid;
 import javax.validation.constraints.Past;
 import javax.validation.constraints.Size;
+
+import org.hibernate.validator.constraints.NotEmpty;
 
 @Entity
 public class User {
@@ -49,8 +50,13 @@ public class User {
   @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
   @JoinColumn(name="user_id")
   private List<Role> roles;
+  
+  @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+  @JoinColumn(name="user_id")
+  private List<CustomerOrder> orders;
 
   public User() {
+	  //orders = new ArrayList<>();
   }
 
   public User(String firstName, String lastName, Date birthday, Address address, List<Role> roles, Telephone phone, String password) {
@@ -61,9 +67,18 @@ public class User {
     this.roles = roles;
     this.phone = phone;
     this.password = password;
+    //orders = new ArrayList<>();
   }
 
-  public String getPassword() {
+  public List<CustomerOrder> getOrders() {
+	return orders;
+}
+
+public void setOrders(List<CustomerOrder> orders) {
+	this.orders = orders;
+}
+
+public String getPassword() {
     return password;
   }
 
