@@ -1,0 +1,76 @@
+<footer class="text-muted">
+      <div class="container">
+        <p class="float-right">
+          <a href="#"><spring:message code="product.backToTop" /></a>
+        </p>
+        <p>&copy; Lightning </p>     	
+      </div>
+    </footer>
+    <script type="text/javascript" src="<spring:url value='/resource/js/holder.min.js' />">
+    </script>
+	<script>
+	  function contact(){
+	    window.open("chatroom/toChatroom","_blank");
+	  }
+	 $(function() {
+		 	$('.close, .cancel').click(function () {
+				$('.error-msg').hide();
+			});
+			$('.editProductModal').click(function (e) {
+			   e.preventDefault();
+			   const quantity = $(this).parent().prev().html();
+			   const price = $(this).parent().prev().prev().html();
+			   const condition = $(this).parent().prev().prev().prev().html();
+			   const color = $(this).parent().prev().prev().prev().prev().html();
+			   const desc = $(this).parent().prev().prev().prev().prev().prev().html() ;
+			   const title = $(this).parent().prev().prev().prev().prev().prev().prev().text();
+			   
+			   $("#editProduct #title").val(title);
+			   $("#editProduct #description").val(desc);
+			   $("#editProduct #color").val(color);
+			   $("#editProduct #conditions").val(condition);
+			   $("#editProduct #price").val(price);
+			   $("#editProduct #quantity").val(quantity);
+			   $("#editProduct #id").val($(this).attr('data-id'));
+				
+			}); 
+		   /*  Submit form using Ajax */
+		   $('#add, #edit').click(function(e) {
+			   e.preventDefault();
+			   $(".error-msg").hide();
+			   const buttonId = $(this).attr('id');
+			   console.log(buttonId);
+			   const formId = "#" + buttonId + "Product";
+		      
+		      $.post({
+		         url : 'saveProduct' + '/' + buttonId,
+		         method: 'POST',
+		         data : $(formId).serialize(),
+		         dataType: 'json',
+		         type:'json',
+		         success : function(res) {		         	
+		            if(res.status == "SUCCESS"){		               
+		               if(res.type == "add") $("#addProductModal").modal('hide');
+		              else	$("#editProductModal").modal('hide');
+		            
+		            }else{		            
+		            	var errorInfo = "Please fix the following error(s): <br />";		            	
+ 		                for(var i = res.result.length -1 ; i >= 0 ; i--){ 
+ 		                	errorInfo += res.result[i].defaultMessage + "<br>";
+ 		               }
+ 		               if(res.type == "add") {
+ 		                	$("#addProduct .error-msg").html(errorInfo);
+ 	 		               	$("#addProduct .error-msg").show();
+					   }
+ 		              else { 		            	 	
+	                	$("#editProduct .error-msg").html(errorInfo);
+ 		               	$("#editProduct .error-msg").show();
+					   } 		               
+		            }
+		         }
+		      })
+		   });
+		});
+	</script>
+</body>
+</html>

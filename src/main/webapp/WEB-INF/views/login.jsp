@@ -7,7 +7,7 @@
     <div class="row">
         <div class="col-md-8 order-md-1">
             <h4 class="mb-3">User Login</h4>
-            <form:form name='f' id="login" action="/login" method="POST" class="form-signin">
+            <form:form name='f' id="login" action="" method="POST" class="form-signin">
                 <%--<img class="mb-4" src="https://getbootstrap.com/assets/brand/bootstrap-solid.svg" alt="" width="72" height="72">--%>
                 <%--<c:if test="${param.invalid != null}">--%>
                     <%--<div class="alert alert-danger" cssStyle="color : red;">--%>

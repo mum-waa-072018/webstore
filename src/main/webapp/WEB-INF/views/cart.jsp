@@ -17,6 +17,8 @@
 		<form class="card p-2">
 			<div class="input-group justify-content-between">
 				<a href="<spring:url value='/products' />" class="btn btn-secondary">Products</a>
+				<br />
+				<br />				
 				<div>
 					<span id="loadingMessage"></span>
 					<button id="checkoutBtn" class="btn btn-primary">Checkout</button>

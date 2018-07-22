@@ -23,8 +23,8 @@ public class LoginController {
     model.addAttribute("user", new User());
     return "loginPage";
   }
-
-  @RequestMapping(value = "login", method = RequestMethod.GET)
+  
+  @RequestMapping(value={"/login","login"}, method = RequestMethod.GET)
   public String getLoginPageAdmin(Model model) {
     model.addAttribute("user", new User());
     return "login";
@@ -45,7 +45,8 @@ public class LoginController {
   }
 
   @RequestMapping(value = "logout", method = RequestMethod.GET)
-  public String logout() {
+  public String logout() {	
+	UserSessionUtil.logoutUser();
     return "loginPage";
   }
 

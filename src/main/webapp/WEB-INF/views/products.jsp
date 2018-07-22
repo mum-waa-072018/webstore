@@ -1,3 +1,5 @@
+<%@ include file="template/header.jspf"%>
+    <main role="main">  
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <html>
@@ -35,15 +37,13 @@
             <a id="viewCart" href="<spring:url value='/cart' />" class="btn btn-primary my-2">View your cart - <span id="cartItemsCount"></span> item(s)</a>
           </p>
         </div>
-      </section>		
+      </section>
       <div class="album py-5 bg-light">
         <div class="container">
           <div class="row">
-          	
 	          <c:forEach items="${products}" var="product">          
 	            <div class="col-md-4">
 	              <div class="card mb-4 box-shadow">
-	              
 	                <img class="card-img-top" data-src="holder.js/100px225?theme=thumb&bg=55595c&fg=eceeef&text=Thumbnail" alt="Card image cap">
 	                <div class="card-body">
 	                <p class="card-text">${product.title}</p>
@@ -67,20 +67,4 @@
         </div>
       </div>
     </main>
-    <footer class="text-muted">
-      <div class="container">
-        <p class="float-right">
-          <a href="#"><spring:message code="product.backToTop" /></a>
-        </p>
-        <p>&copy; Lightning </p>     	
-      </div>
-    </footer>
-    <script type="text/javascript" src="<spring:url value='/resource/js/holder.min.js' />">
-    </script>
-<script>
-  function contact(){
-    window.open("chatroom/toChatroom","_blank");
-  }
-</script>
-</body>
-</html>
+<%@ include file="template/footer.jspf"%>   
