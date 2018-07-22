@@ -28,4 +28,10 @@ public class OrderServiceImpl implements OrderService {
 		return orderRepository.findOne(orderId);
 	}
 
+	@Override
+	public Iterable<CustomerOrder> findAll() {
+		
+		return orderRepository.findAll();
+	}
+
 }

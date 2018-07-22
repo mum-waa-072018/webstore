@@ -7,4 +7,6 @@ public interface OrderService {
 	
 	CustomerOrder findOne(Long orderId);
 	
+	Iterable<CustomerOrder> findAll();
+	
 }
