@@ -25,10 +25,10 @@ public class Address implements Serializable{
 	@NotEmpty(message="{Empty.Address.Field}")
 	private String city;
 
-	@Size(min=2, max=2, message="{Size.Address.State}")
+	@Size(min=2, max=2, message="{Size.Field}")
 	private String state;
 
-	@Size(min=5, max=5, message="{Size.Address.ZipCode}")
+	@Size(min=5, max=5, message="{Size.Field}")
   	private String zipCode;
 
 	public Address(String street, String city, String state, String zipCode) {

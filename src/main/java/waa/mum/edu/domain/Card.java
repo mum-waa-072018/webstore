@@ -18,15 +18,15 @@ public class Card implements Serializable {
 	@GeneratedValue(strategy=GenerationType.AUTO)
  	private long id;
 	
-	@NotNull(message = "{Empty.Card.Field}")
+	@NotNull(message = "{NotEmpty}")
 	@Range(min = 1000000000000000L, max = 9999999999999999L, message = "{Range.Card.Field}")
 	private Long number;
 
-	@NotEmpty(message = "{Empty.Card.Field}")
+	@NotEmpty(message = "{NotEmpty}")
 	private String name;
 
-	@NotNull(message = "{Empty.Card.Field}")
-	@Range(min = 100, max = 999, message = "{Range.Card.Field}")
+	@NotNull(message = "{NotEmpty}")
+	@Range(min = 100, max = 999, message = "{Range}")
 	private Integer ccv;
 
 	public Long getNumber() {

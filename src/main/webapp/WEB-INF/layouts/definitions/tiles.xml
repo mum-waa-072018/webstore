@@ -37,14 +37,14 @@
    <definition name="cart" extends="baseLayout">
       <put-attribute name="title" value="Cart" />
       <put-attribute name="heading" value="Lightning" />
-      <put-attribute name="tagline" value="Welcome to buy things online!" />
+      <put-attribute name="tagline" value="Here is your cart Kemosabe!" />
       <put-attribute name="content" value="/WEB-INF/views/cart.jsp" />
    </definition>
    
    <definition name="flows/checkout/shipping-form" extends="baseLayout">
       <put-attribute name="title" value="Shipping Information" />
       <put-attribute name="heading" value="Lightning" />
-      <put-attribute name="tagline" value="Here is your cart Kemosabe!" />
+      <put-attribute name="tagline" value="Add your shipping information Kemosabe!" />
       <put-attribute name="content" value="/WEB-INF/views/flows/checkout/shipping-form.jsp" />
    </definition>
    
